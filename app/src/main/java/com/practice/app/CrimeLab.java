@@ -44,6 +44,13 @@ public class CrimeLab {
 
         mDatabase.insert(CrimeTable.NAME, null, values);
     }
+
+    public void deleteCrime(Crime c) {
+        ContentValues values = getContentValues(c);
+
+        mDatabase.delete(CrimeTable.NAME, "uuid = ?", new String[]{c.getmId().toString()});
+    }
+
     public List<Crime> getCrimes() {
         List<Crime> crimes = new ArrayList<>();
         CrimeCursorWrapper cursor = queryCrimes(null, null);
